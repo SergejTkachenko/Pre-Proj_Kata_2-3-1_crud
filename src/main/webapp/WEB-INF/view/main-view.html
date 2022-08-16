@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Table</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<h2>Users Table</h2>
+<body>
+<div class="table">
+  <div class="row bg-black text-white"/>
+    <div class="col">#</div>
+    <div class="col">Name</div>
+    <div class="col">Lastname</div>
+    <div class="col">Email</div>
+    <div class="col"></div>
+  </div>
+
+  <div th:each="user : ${userList}" class="row">
+    <div class="col" th:text="${user.getId()}"/>
+    <div class="col" th:text="${user.getName()}"/>
+    <div class="col" th:text="${user.getLastName()}"/>
+    <div class="col" th:text="${user.getEmail()}"/>
+    <div class="col">
+      <a type="button" th:href="@{'/updateUser/'+ ${user.id}}" class="btn bg-black text-white">Update</a>
+      <a type="button" th:href="@{'/deleteUser/'+ ${user.id}}" class="btn bg-black text-white">Delete</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col"><a type="button" th:href="@{'/addNewUser'}" class="btn btn-dark">ADD NEW USER</a></div>
+</div>
+</body>
+</html>
