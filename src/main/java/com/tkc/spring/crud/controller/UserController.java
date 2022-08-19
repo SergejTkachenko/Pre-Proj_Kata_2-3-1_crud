@@ -42,7 +42,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping( "/updateUser/{id}")
+    @PutMapping( "/updateUser/{id}")
     public String updateUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
