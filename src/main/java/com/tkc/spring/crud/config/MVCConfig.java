@@ -26,7 +26,6 @@ public class MVCConfig implements WebMvcConfigurer {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/view/");
-        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setSuffix(".html");
 
         return templateResolver;

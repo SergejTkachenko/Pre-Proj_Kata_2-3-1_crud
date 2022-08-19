@@ -1,8 +1,9 @@
 package com.tkc.spring.crud.repository;
 
 import com.tkc.spring.crud.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,12 +18,15 @@ public class UserRepositoryImpl implements UserRepository {
    @Override
    public void saveUser(User user) {
       User user1 = entityManager.merge(user);
-      entityManager.persist(user1);
+      user.setId(user1.getId());
    }
 
    @Override
    public List<User> getAllUsers() {
-      return entityManager.createQuery("select u from User u", User.class).getResultList();
+      Query query = entityManager.createQuery("from User");
+      List<User> allUsers = query.getResultList();
+      return allUsers;
+//      return entityManager.createQuery("select u from User u", User.class).getResultList();
    }
 
    @Override
@@ -33,10 +37,6 @@ public class UserRepositoryImpl implements UserRepository {
    @Override
    public void deleteUser(User user) {
       User jUser = entityManager.merge(user);
-      if (user == null) {
-         throw new NullPointerException("User not found");
-      }
       entityManager.remove(jUser);
-      entityManager.flush();
    }
 }

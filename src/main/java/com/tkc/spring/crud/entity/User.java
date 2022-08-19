@@ -3,7 +3,7 @@ package com.tkc.spring.crud.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users_db_kata")
 public class User {
 
    @Id
